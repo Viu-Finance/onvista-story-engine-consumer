@@ -30,8 +30,10 @@ app:
 spring:
   application:
     name: story-engine-consumer
-  main:
-    web-application-type: none  # CLI mode, no web server
+  autoconfigure:
+    exclude:
+      - org.redisson.spring.starter.RedissonAutoConfigurationV2  # Incompatible with Spring Boot 4.0
+      - finance.viu.onvistastoryengine.config.OnVistaStoryEngineWebConfiguration  # Library mode - no web endpoints
 
 logging:
   level:
