@@ -8,6 +8,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.runApplication
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.ComponentScan
+import java.util.concurrent.CountDownLatch
 
 /**
  * Sample application demonstrating onvista-story-engine library usage.
@@ -32,6 +33,8 @@ class ConsumerApplication {
             println("Fetching stories for ISIN: $isin")
             println("This may take a moment...\n")
 
+            val latch = CountDownLatch(1)
+
             storyService.getStories(isin, skipCache = true)
                 .subscribe(
                     { response ->
@@ -50,14 +53,16 @@ class ConsumerApplication {
                     },
                     { error ->
                         System.err.println("Error generating stories: ${error.message}")
+                        latch.countDown()
                     },
                     {
                         println("=== Demo Complete ===")
+                        latch.countDown()
                     }
                 )
 
             // Keep alive for async completion
-            Thread.sleep(60000)
+            latch.await()
         }
     }
 }
