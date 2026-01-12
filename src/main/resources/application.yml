@@ -1,31 +1,36 @@
 # OnVista Story Engine Consumer - Configuration
-# Copy to application-local.yml and fill in your values
+# All settings can be overridden via .env file
 
 app:
   # Required: OpenAI API Key
   openai-api-key: ${OPENAI_API_KEY}
 
-  # Optional: API Key for web mode (not needed for library usage)
-  # api-key: ${API_KEY:#{null}}
-
-  # Cache Configuration (in-memory for demo)
-  cache-enabled: true
-  cache-backend: memory
-  memory-cache-max-size: 1000
+  # Cache Configuration
+  cache-enabled: ${CACHE_ENABLED:true}
+  cache-backend: ${CACHE_BACKEND:memory}
+  memory-cache-max-size: ${MEMORY_CACHE_MAX_SIZE:1000}
+  cache-ttl-stories: ${CACHE_TTL_STORIES:31536000}
 
   # LLM Settings
   openai-model: ${OPENAI_MODEL:gpt-5.2}
-  openai-temperature: 0.3
-  max-articles-per-request: 50
-  article-content-max-chars: 1500
+  openai-temperature: ${OPENAI_TEMPERATURE:0.3}
+  max-articles-per-request: ${MAX_ARTICLES_PER_REQUEST:50}
+  article-content-max-chars: ${ARTICLE_CONTENT_MAX_CHARS:1500}
 
   # Relevance Filter
-  relevance-filter-enabled: true
-  relevance-filter-threshold: 0.2
-  relevance-filter-model: gpt-5-mini
+  relevance-filter-enabled: ${RELEVANCE_FILTER_ENABLED:true}
+  relevance-filter-threshold: ${RELEVANCE_FILTER_THRESHOLD:0.2}
+  relevance-filter-model: ${RELEVANCE_FILTER_MODEL:gpt-5-mini}
+  relevance-filter-temperature: ${RELEVANCE_FILTER_TEMPERATURE:0.1}
+  relevance-filter-max-concurrent: ${RELEVANCE_FILTER_MAX_CONCURRENT:10}
+
+  # OnVista API
+  onvista-base-url: ${ONVISTA_BASE_URL:https://prod-api.onvista.de/api/v1}
+  onvista-max-concurrent: ${ONVISTA_MAX_CONCURRENT:20}
+  onvista-timeout: ${ONVISTA_TIMEOUT:30}
 
   # Logging
-  log-level: INFO
+  log-level: ${LOG_LEVEL:INFO}
 
 spring:
   application:
