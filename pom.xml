@@ -21,8 +21,8 @@
     <repositories>
         <repository>
             <id>github</id>
-            <name>GitHub Rize Capital Packages</name>
-            <url>https://maven.pkg.github.com/rize-capital/onvista-story-engine</url>
+            <name>GitHub Viu Finance Packages</name>
+            <url>https://maven.pkg.github.com/Viu-Finance/onvista-story-engine</url>
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
