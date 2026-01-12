@@ -1,0 +1,41 @@
+# OnVista Story Engine Consumer - Configuration
+# Copy to application-local.yml and fill in your values
+
+app:
+  # Required: OpenAI API Key
+  openai-api-key: ${OPENAI_API_KEY}
+
+  # Optional: API Key for web mode (not needed for library usage)
+  # api-key: ${API_KEY:#{null}}
+
+  # Cache Configuration (in-memory for demo)
+  cache-enabled: true
+  cache-backend: memory
+  memory-cache-max-size: 1000
+
+  # LLM Settings
+  openai-model: ${OPENAI_MODEL:gpt-5.2}
+  openai-temperature: 0.3
+  max-articles-per-request: 50
+  article-content-max-chars: 1500
+
+  # Relevance Filter
+  relevance-filter-enabled: true
+  relevance-filter-threshold: 0.2
+  relevance-filter-model: gpt-5-mini
+
+  # Logging
+  log-level: INFO
+
+spring:
+  application:
+    name: story-engine-consumer
+  main:
+    web-application-type: none  # CLI mode, no web server
+
+logging:
+  level:
+    finance.viu: ${app.log-level}
+    com.example: DEBUG
+  pattern:
+    console: "%d{HH:mm:ss} | %-5level | %logger{20} | %msg%n"
