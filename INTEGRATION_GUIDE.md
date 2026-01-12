@@ -97,7 +97,7 @@ storyService.getStories("US67066G1040") // NVIDIA
     }
   ],
   "cached": false,
-  "cache_ttl": 21600
+  "cache_ttl": 31536000
 }
 ```
 
@@ -305,13 +305,13 @@ app:
 
   # For memory cache
   memory-cache-max-size: 1000
-  memory-cache-ttl-seconds: 21600  # 6 hours
+  memory-cache-ttl-seconds: 31536000  # 1 year (content-hash verified)
 
   # For Redis cache
   redis-host: localhost
   redis-port: 6379
   redis-db: 0
-  redis-ttl-seconds: 21600
+  redis-ttl-seconds: 31536000
 
   # For tiered cache (L1 memory + L2 Redis)
   # Uses both memory-cache-* and redis-* settings
@@ -372,11 +372,11 @@ app:
 | `app.cache-enabled` | `true` | Enable/disable caching |
 | `app.cache-backend` | `memory` | Cache backend: `memory`, `redis`, or `tiered` |
 | `app.memory-cache-max-size` | `1000` | Max entries in memory cache |
-| `app.memory-cache-ttl-seconds` | `21600` | Memory cache TTL (6 hours) |
+| `app.memory-cache-ttl-seconds` | `31536000` | Memory cache TTL (1 year, content-hash verified) |
 | `app.redis-host` | `localhost` | Redis server host |
 | `app.redis-port` | `6379` | Redis server port |
 | `app.redis-db` | `0` | Redis database number |
-| `app.redis-ttl-seconds` | `21600` | Redis cache TTL (6 hours) |
+| `app.redis-ttl-seconds` | `31536000` | Redis cache TTL (1 year, content-hash verified) |
 | `app.relevance-filter-enabled` | `false` | Enable LLM pre-filtering |
 | `app.relevance-filter-threshold` | `0.3` | Min relevance score (0.0-1.0) |
 | `app.relevance-filter-model` | `gpt-4o-mini` | LLM model for filtering |
