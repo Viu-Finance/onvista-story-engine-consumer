@@ -30,6 +30,8 @@ app:
 spring:
   application:
     name: story-engine-consumer
+  config:
+    import: optional:file:.env[.properties]  # Auto-load .env file
   main:
     web-application-type: none  # CLI mode - no web server
   autoconfigure:
