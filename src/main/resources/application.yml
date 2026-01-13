@@ -2,6 +2,9 @@
 # All settings can be overridden via .env file
 
 app:
+  # Application Version (from Maven)
+  version: @project.version@
+
   # Required: OpenAI API Key
   openai-api-key: ${OPENAI_API_KEY}
 
